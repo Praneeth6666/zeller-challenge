@@ -1,4 +1,3 @@
-import "./App.css";
 import { ListZellerCustomers } from "./queries";
 import { Amplify, API, graphqlOperation } from "aws-amplify";
 import styled from "styled-components";
@@ -14,6 +13,11 @@ const userRoles = [
 function formatTitleCase(string) {
   return string[0].toUpperCase() + string.slice(1).toLowerCase();
 }
+
+const Wrapper = styled.div`
+  margin-left: 10%;
+  font-family: sans-serif;
+`;
 
 const UserTypeLabel = styled.label`
   display: inline-block;
@@ -104,7 +108,7 @@ function App() {
   );
 
   return (
-    <div className="App">
+    <Wrapper className="App">
       <h2>User Types</h2>
       {userRoles.map(({ name, id, value, label }) => (
         <UserRoleSelect name={name} value={value} label={label} key={id} />
@@ -113,7 +117,7 @@ function App() {
       {users.map(({ id, name, role }) => (
         <UserListItem name={name} role={role} key={id} />
       ))}
-    </div>
+    </Wrapper>
   );
 }
 
